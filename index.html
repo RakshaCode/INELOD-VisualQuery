@@ -16,13 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-	    $(document).ready(function() 
-		    { 
-		    	$("#tablesorter-demo").tablesorter(); 
-		    	$("#tablesorter-demo").stickyTableHeaders(); 
-		    	$('[data-toggle="tooltip"]').tooltip(); 
-		    } 
-	    ); 
+      $(document).ready(function() 
+        { 
+          $("#tablesorter-demo").tablesorter(); 
+          $("#tablesorter-demo").stickyTableHeaders(); 
+          $('[data-toggle="tooltip"]').tooltip(); 
+        }); 
     </script>
 
     <!-- Le styles -->
@@ -82,6 +81,35 @@
 <button id="remButt" class="label label-default" onclick="showRows();" style="font-size: 75%; font-weight: bold; line-height: 1; display: none;"><span class="submit glyphicon glyphicon-remove"></span>  Remove filter</button>
 </div>
 -->
+<script>
+
+function generateYasguiLink(clasif, queryInput) {
+  const SPARQL_ENDPOINT = "https://stats.linkeddata.es/sparql";
+  // Function to process the query and open YASGUI
+  processQuery(queryInput);
+  function processQuery(queryTemplate) {
+    const query = queryTemplate.replace("{{CLASI}}", clasif);
+    const encodedQuery = encodeURIComponent(query);
+    const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
+    window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
+  }
+}
+
+function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
+  const SPARQL_ENDPOINT = "https://stats.linkeddata.es/sparql";
+  // Function to process the query and open YASGUI
+  processQuery(queryInput);
+  function processQuery(queryTemplate) {
+    const query = queryTemplate.replace("{{CLASI1}}", clasif1);
+          query = queryTemplate.replace("{{CLASI2}}", clasif2);   
+    const encodedQuery = encodeURIComponent(query);
+    const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
+    window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
+  }
+}
+
+</script>
+
 </div>
 </div>
 <br>
@@ -94,6 +122,7 @@
 <th class="col-md-1">Language</th>
 <th class="col-md-2">Links</th>
 <th class="col-md-4">Description</th>
+<th class="col-md-4">Queries</th>
 </tr>
 </thead>
 <tbody>
@@ -103,9 +132,15 @@
 <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
 <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
 <td>
-    <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+  <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
+  <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/daco/daco42/codmun/cod_ccaa.htm">INEbase</a><br></span>
+  <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://servicios.ine.es/wstempus/js/ES/VALORES_VARIABLE/CCAA">JSON API</a><br></span>
 </td>
 <td>Comunidades Autónomas</td>
+<td>
+  <a href="javascript:void(0);" onclick="generateYasguiLink('ccaa/CCAA', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+  <a href="javascript:void(0);" onclick="generateYasguiLink('ccaa/CCAA', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de las comunidades autónomas.</a>
+</td>
 </tr>
 
 <tr id="tr2">
@@ -114,9 +149,13 @@
   <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
   <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
   <td>
-      <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+      <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
   </td>
   <td>Nomenclatura Combinada 2010</td>
+  <td>
+    <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2010', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+    <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2010', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+  </td>
   </tr>
 
 <tr id="tr3">
@@ -125,9 +164,13 @@
   <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
   <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
   <td>
-      <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+      <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
   </td>
   <td>Nomenclatura Combinada 2020</td>
+  <td>
+    <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2020', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+    <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2020', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+  </td>
   </tr>
 
   <tr id="tr4">
@@ -136,9 +179,13 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Nomenclatura Combinada 2023</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2023', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2023', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+    </td>
     </tr>
   
   <tr id="tr5">
@@ -147,9 +194,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 2009</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE09', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE09', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE09', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr6">
@@ -158,9 +210,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 1993</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE93', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE93', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE93', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr7">
@@ -169,9 +226,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Niveles Educativos.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000EST', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000EST', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cneed/CNED2000EST', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr8">
@@ -180,9 +242,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Niveles de Formación.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000NIV', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000NIV', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000NIV', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr9">
@@ -191,9 +258,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Sectores de Estudio.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000SEC', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000SEC', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNED2000SEC', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr10">
@@ -202,9 +274,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de programas, titulaciones y certificaciones en niveles de formación alcanzados (CNED-A), 2014.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDA14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDA14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDA14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr11">
@@ -213,9 +290,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de programas y titulaciones en sectores de estudio (CNED-F), 2014.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDF14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDF14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDF14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr12">
@@ -224,9 +306,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de programas en niveles educativos (CNED-P), 2014.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDP14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDP14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNEDP14', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr13">
@@ -235,9 +322,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Ocupaciones. CNO 2011.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cno/CNO11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cno/CNO11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cned/CNO11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr14">
@@ -246,9 +338,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Ocupaciones. CNO 1994.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cno/CNO94', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cno/CNO94', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cno/CNO94', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr15">
@@ -257,9 +354,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de bienes y servicios. COICOP 2016.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('coicop/COICOP16', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('coicop/COICOP16', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('coicop/COICOP16', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr16">
@@ -268,8 +370,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
+    </td>
     <td>Clasificación de Productos por Actividades. CPA 2.1.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
   
   <tr id="tr17">
@@ -278,9 +386,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/en" target="_blank"> <span class="label label-primary">en</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2.1.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21ENG', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21ENG', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21ENG', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr18">
@@ -289,9 +402,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2002.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2002', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2002', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2002', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr19">
@@ -300,9 +418,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2008.</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2008', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2008', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2008', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
   
   <tr id="tr20">
@@ -311,9 +434,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Central de Productos (CPC) Versión 2.1</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpc/CPC21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpc/CPC21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cpc/CPC21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr21">
@@ -322,9 +450,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2011, Logros educativos</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDA11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDA11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDA11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr22">
@@ -333,9 +466,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2011, Programas</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDP11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDP11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDP11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr23">
@@ -344,9 +482,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2013</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDF13', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDF13', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDF13', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
   
   <tr id="tr24">
@@ -355,9 +498,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Internacional Uniforme de Ocupaciones, 2008</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO08', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO08', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO08', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr> 
 
   <tr id="tr25">
@@ -366,9 +514,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Internacional Uniforme de Ocupaciones, 1988</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO88', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO88', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO88', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
   
   <tr id="tr26">
@@ -377,9 +530,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Industrial Internacional Uniforme de todas las actividades económicas, Revisión 4</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isic/ISICREV4', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isic/ISICREV4', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('isic/ISICREV4', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr> 
 
   <tr id="tr27">
@@ -388,9 +546,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Nomenclatura estadística de actividades económicas de la Comunidad Europea Rev.1.1</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV11', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr28">
@@ -399,8 +562,13 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     <td>Provincias</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('provincias/PROVINCIAS', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('provincias/PROVINCIAS', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('provincias/PROVINCIAS', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr>
 
   <tr id="tr29">
@@ -409,9 +577,10 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Correspondencias entre CNAE09 y NACEREV2</td>
+    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','nace/NACEREV2','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
   </tr> 
 
   <tr id="tr30">
@@ -420,9 +589,10 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Correspondencias entre CNAE93 y CNAE09</td>
+    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','cane/CNAE93','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
   </tr> 
 
   <tr id="tr31">
@@ -431,9 +601,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td> Nivel de estudios completados: Población de 15 y más años por sexo, edad y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66615', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66615', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66615', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
+    </td>
   </tr> 
 
   <tr id="tr32">
@@ -442,9 +617,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Información tabla Nivel de estudios completados: Población de 15 y más años por sexo, grupos de edad, nacionalidad (española/extranjera) y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('capitulo-66616', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
+    </td>
   </tr>   
 
   <tr id="tr33">
@@ -453,9 +633,14 @@
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 2025</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
   </tr> 
 
 </tbody></table>
