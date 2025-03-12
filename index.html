@@ -44,7 +44,7 @@
   <body>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <!--div class="container">
+  <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle navigation</span>
@@ -55,19 +55,20 @@
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Ontologies</a></li>
-        <li><a href="conceptualview.html">Conceptual View</a></li>
-        <li class="active"><a href="#">SKOS Codelists</a></li>
+        <li class="active"><a href="#">Clasificaciones</a></li>
+        <li><a href="correspondencias.html">Correspondencias</a></li>
+        <li><a href="cubos.html">Cubos de datos</a></li>
+        <li><a href="queries.html">Data Stories</a></li>
       </ul>
     </div>
-  </div-->
+  </div>
  </div>
     <div class="container">
 
       <!-- Jumbotron -->
       <div class="jumbotron">
         <h1>Catálogo de Datos Semánticos Estadísticos</h1>
-        <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística</p>
+        <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística. Esta pestaña contiene las clasificaciones estadísticas. </p>
       </div>
       <hr>
 <div class="row"> 
@@ -614,118 +615,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
-  </tr> 
-
-  <tr id="tr30">
-    <td>CNAE09-NACEREV2</td>
-    <td><a href="nt-data/correspondencias_cnae09-nacerev2.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-    </td>
-    <td>Correspondencias entre CNAE09 y NACEREV2</td>
-    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','nace/NACEREV2','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
-  </tr> 
-
-  <tr id="tr31">
-    <td>CNAE93-09</td>
-    <td><a href="nt-data/correspondencias_cnae93-cnae09.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-    </td>
-    <td>Correspondencias entre CNAE93 y CNAE09</td>
-    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','cane/CNAE93','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
-  </tr> 
-
-  <tr id="tr32">
-    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=SELECT+*+WHERE+%7B%0D%0A++%3Fs+%3Fp+%3Fo+.%0D%0A++FILTER%28STRSTARTS%28STR%28%3Fs%29%2C+%22https%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fcubes%2Ftabla-66615%22%29%29%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">tabla66615</a></td>
-    <td><a href="https://delicias.dia.fi.upm.es/nextcloud/index.php/s/xDaAYsKnYPRdMiq" target="_blank"> <span class="label label-primary">Turtle</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66615&L=0">INEbase</a><br></span>    
-    </td>
-    <td> Nivel de estudios completados: Población de 15 y más años por sexo, edad y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
-    <td>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66615', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66615', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66615', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
-    </td>
-  </tr> 
-
-  <tr id="tr33">
-    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=SELECT+*+WHERE+%7B%0D%0A++%3Fs+%3Fp+%3Fo+.%0D%0A++FILTER%28STRSTARTS%28STR%28%3Fs%29%2C+%22https%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fcubes%2Ftabla-66616%22%29%29%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">tabla66616</a></td>
-    <td><a href="https://delicias.dia.fi.upm.es/nextcloud/index.php/s/XoJw4pbRXn2Y4RS" target="_blank"> <span class="label label-primary">Turtle</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66616&L=0">INEbase</a><br></span>    
-    </td>
-    <td>Nivel de estudios completados: Población de 15 y más años por sexo, grupos de edad, nacionalidad (española/extranjera) y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
-    <td>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66616', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
-    </td>
   </tr>  
-
-  <tr id="tr34">
-    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=SELECT+*+WHERE+%7B%0D%0A++%3Fs+%3Fp+%3Fo+.%0D%0A++FILTER%28STRSTARTS%28STR%28%3Fs%29%2C+%22https%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fcubes%2Ftabla-66617%22%29%29%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">tabla66617</a></td>
-    <td><a href="https://delicias.dia.fi.upm.es/nextcloud/index.php/s/xjEX5tKqmpWAGXm" target="_blank"> <span class="label label-primary">Turtle</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66617&L=0">INEbase</a><br></span>    
-    </td>
-    <td>Nivel de estudios completados: Población de 15 y más años por sexo, grupos de edad, lugar de nacimiento (España/extranjero) y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
-    <td>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66617', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66617', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66617', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
-    </td>
-  </tr>
-
-  <tr id="tr35">
-    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=SELECT+*+WHERE+%7B%0D%0A++%3Fs+%3Fp+%3Fo+.%0D%0A++FILTER%28STRSTARTS%28STR%28%3Fs%29%2C+%22https%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fcubes%2Ftabla-66618%22%29%29%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">tabla66618</a></td>
-    <td><a href="https://delicias.dia.fi.upm.es/nextcloud/index.php/s/PKs5qjaJpQcR6Mt" target="_blank"> <span class="label label-primary">Turtle</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66618&L=0">INEbase</a><br></span>    
-    </td>
-    <td>Nivel de estudios completados: Población de 15 y más años por sexo, país de nacimiento (principales países) y nivel de estudios (agrupado) (Capitales de provincia y principales ciudades)</td>
-    <td>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66618', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66618', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66618', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
-    </td>
-  </tr>
-
-  <tr id="tr36">
-    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=SELECT+*+WHERE+%7B%0D%0A++%3Fs+%3Fp+%3Fo+.%0D%0A++FILTER%28STRSTARTS%28STR%28%3Fs%29%2C+%22https%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fcubes%2Ftabla-66619%22%29%29%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">tabla66619</a></td>
-    <td><a href="https://delicias.dia.fi.upm.es/nextcloud/index.php/s/66AsM2KzdeLGBnr" target="_blank"> <span class="label label-primary">Turtle</span> </a></td>
-    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
-    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
-    <td>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66619&L=0">INEbase</a><br></span>    
-    </td>
-    <td>Nivel de estudios completados: Población de 15 y más años por sexo, país de nacionalidad (principales países) y nivel de estudios (agrupado) (Capitales de provincia y principales ciudades)</td>
-    <td>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66619', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:DataSet\n}');">Lista de cubos y sus metadatos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66619', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<https://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
-      <a href="javascript:void(0);" onclick="generateYasguiLink('tabla-66619', 'PREFIX qb: &lt;http://purl.org/linked-data/cube#&gt;\nPREFIX rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;\nPREFIX sdmx-dimension:  &lt;http://purl.org/linked-data/sdmx/2009/dimension#&gt;  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet &lt;https://stats.linkeddata.es/voc/cubes/{{CLASI}}&gt;\n?x sdmx-dimension:refArea  &quot;01059 Vitoria-Gasteiz&quot;.\n?x sdmx-dimension:educationLev &quot;Sin estudios&quot;.\n?x sdmx-dimension:sex &quot;Hombres&quot;.\n}');">Observaciones de hombres en Vitoria sin estudios.</a>
-    </td>
-  </tr>  
-
-
 
 </tbody></table>-
 <hr>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Datos Semánticos Estadísticos </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
+    <meta name="language" content="Spanish">
+    <meta name="author" content="Diego Conde">
+    
+    <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
+    <script src="vocab/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
+    <script type="text/javascript" src="vocab/js/jquery.stickytableheaders.js"></script>
+    <script type="text/javascript" src="vocab/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
+    <script type="text/javascript" id="js">
+      $(document).ready(function() 
+        { 
+          $("#tablesorter-demo").tablesorter(); 
+          $("#tablesorter-demo").stickyTableHeaders(); 
+          $('[data-toggle="tooltip"]').tooltip(); 
+        }); 
+    </script>
+
+    <script>
+        function generateYasguiLink(query) {
+            const encodedQuery = encodeURIComponent(query);
+            const encodedEndpoint = encodeURIComponent("https://stats.linkeddata.es/sparql");
+            window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
+        }
+    </script>    
+
+    <!-- Le styles -->
+    <link href="vocab/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f4f4f4;
+            }
+            .query-button {
+                display: inline-block;
+                padding: 6px 12px;
+                background-color: #007bff;
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+            }
+            .query-button:hover {
+                background-color: #0056b3;
+            }
+        </style>
+    
+
+    <!-- Fav and touch icons -->
+  </head>
+
+  <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Clasificaciones</a></li>
+        <li><a href="correspondencias.html">Correspondencias</a></li>
+        <li><a href="cubos.html">Cubos de datos</a></li>
+        <li class="active"><a href="#">Data Stories</a></li>
+      </ul>
+    </div>
+  </div>
+ </div>
+    <div class="container">
+
+      <!-- Jumbotron -->
+      <div class="jumbotron">
+        <h1>Data Stories</h1>
+        <p class="lead">Este es un catálogo de consultas SPARQL (junto a su correspondencia en lenguaje natural) que son útiles para diferentes propósitos. Las consultas se pueden obtener como ficheros independientes dentro de la carpeta del proyecto, para facilitar el mantenimiento y la generación de otras consultas para distintos conjuntos de datos del INE, además de los cambios a la ontología y vocabularios.</p>
+      </div>
+      <hr>
+<div class="row"> 
+<div class="ui-widget">
+
+<table>
+    <h2>Consultas de Clasificaciones</h2>
+    <tr>
+        <th>Descripcion</th>
+        <th>Enlace a Consulta</th>
+    </tr>
+    <tr>
+        <td>¿Cuáles son  las clasificaciones estadísticas disponibles?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nSELECT DISTINCT ?classification\nWHERE {\n?x skos:inScheme ?classification .\n}")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+        <td>¿Cuáles son los niveles jerárquicos de la clasificación CLASI?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\n PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n  SELECT DISTINCT ?x ?y ?z WHERE {\n ?x ?y ?z.  ?x rdf:type xkos:ClassificationLevel.\n ?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+        <td>¿Cuáles son las categorías del nivel 1 de la clasificación X?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nSELECT ?level ?concepto\nWHERE {\n?classification skos:prefLabel ?concepto ;\nskos:member ?level .\n?level rdf:type xkos:ClassificationLevel ;\nskos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>;\nxkos:depth \"1\".\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+        <td>¿Cuál es la estructura jerárquica de la clasificación ‘X’?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nSELECT ?parentLabel ?childLabel\nWHERE {\n  ?parent skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones//{CLASI}> ;\n          skos:prefLabel ?parentLabel .\n  ?child skos:broader ?parent ;\n         skos:prefLabel ?childLabel .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+        <td>¿Qué conceptos en la clasificación ‘X’ son equivalentes a los de ‘Y’?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nSELECT  ?labelX ?labelY\nWHERE {\n  ?conceptX xkos:ConceptAssociation ?conceptY;\n            skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones//{CLASI1}> ;\n            skos:prefLabel ?labelXYZ ;\n  ?conceptY skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones//{CLASI2}> ;\n              skos:prefLabel ?labelABC .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+        <td>¿Cuál es la descripción detallada de la categoría ‘X’ en la clasificación ‘Y’?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nSELECT ?category ?y ?z.\nWHERE {\n  ?category skos:inScheme ?classification ;\n            ?y ?z .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+
+</table>
+<table>
+    <h2>Consultas de Cubos de datos</h2>
+    <tr>
+        <th>Descripcion</th>
+        <th>Enlace a Consulta</th>
+    </tr>
+    <tr>
+        <td>¿Cuáles son las observaciones que hay disponibles?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nSELECT ?observation\nWHERE {\n  ?observation a qb:Observation .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cuántas personas alcanzaron el nivel de educación 'Secundaria' en el año 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nSELECT ?cantidad\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev \"Primera etapa de educación secundaria y similar\" ;\n        sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue  ?cantidad .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cuál es el número de personas por nivel de formación y sexo en 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nSELECT ?nivelFormacion ?sexo SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       sdmx-dim:sex ?sexo ;\n       sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue  ?cantidad .\n}\nGROUP BY ?nivelFormacion ?sexo\nORDER BY ?nivelFormacion ?sexo\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cómo se distribuye el nivel de formación entre personas con distintas nacionalidades en 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <http://stats.linkeddata.es/voc/cubes/vocabulary/>\nSELECT ?nivelFormacion ?nacionalidad SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       inelod-voc:nationality ?nacionalidad ;\n       sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue ?cantidad .\n}\nGROUP BY ?nivelFormacion ?nacionalidad\nORDER BY ?nivelFormacion ?nacionalidad\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cómo ha cambiado el número de personas con educación universitaria entre 2010 y 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <http://stats.linkeddata.es/voc/cubes/vocabulary/>\nSELECT ?periodo SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev \"Estudios universitarios\" ;\n       sdmx-dim:refPeriod ?periodo ;\n       sdmx-measure:obsValue ?cantidad .\n  FILTER(?periodo >= \"2010\" && ?periodo <= \"2022\")\n}\nGROUP BY ?periodo\nORDER BY ?periodo\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cuál es el nivel de formación alcanzado por diferentes grupos de edad y sexo en 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <http://stats.linkeddata.es/voc/cubes/vocabulary/>\nSELECT ?grupoEdad ?sexo ?nivelFormacion SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:age ?grupoEdad ;\n       sdmx-dim:sex ?sexo ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue ?cantidad .\n}\nGROUP BY ?grupoEdad ?sexo ?nivelFormacion\nORDER BY ?grupoEdad ?sexo ?nivelFormacion\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td> ¿Existen diferencias en el nivel de estudios entre capitales y grandes ciudades frente a otras zonas en 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <http://stats.linkeddata.es/voc/cubes/vocabulary/>\nSELECT ?ubicacion ?nivelFormacion SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:refArea ?ubicacion ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue ?cantidad .\n}\nGROUP BY ?ubicacion ?nivelFormacion\nORDER BY ?ubicacion ?nivelFormacion\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cómo se distribuye el nivel de estudios según el lugar de nacimiento en 2022?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <http://stats.linkeddata.es/voc/cubes/vocabulary/>\nSELECT ?lugarNacimiento ?nivelFormacion SUM(?cantidad) AS ?total\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:refArea  ?lugarNacimiento ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue ?cantidad .\n}\nGROUP BY ?lugarNacimiento ?nivelFormacion\nORDER BY ?lugarNacimiento ?nivelFormacion\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+    <tr>
+      <td>¿Cuáles son los metadatos asociados al cubo?</td>
+      <td><a class="query-button" onclick='generateYasguiLink("PREFIX inelod:<https://stats.linkeddata.es/voc/CAP/#>\nPREFIX qb: <http://purl.org/linked-data/cube#>\n select ?s ?p ?o where {\n  ?s ?p ?o .\n    inelod:dataset-66615 ?p ?o .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
+</table>
