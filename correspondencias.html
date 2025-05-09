@@ -148,7 +148,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Correspondencias entre CNAE93 y CNAE09</td>
-    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','cane/CNAE93','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
+    <td><a href="javascript:void(0);" onclick="generateYasguiLinkCorres('cnae/CNAE09','cnae/CNAE93','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x ?y ?z.\n?x xkos:ConceptAssociation ?z.\n?x skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI1}}>.\n?z skos:inSchema <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI2}}>.\n}');">Correspondencia entre clasificaciones.</a></td>
   </tr> 
 
 </tbody></table>-
