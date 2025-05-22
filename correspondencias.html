@@ -128,7 +128,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
 </thead>
 <tbody>
   <tr id="tr1">
-    <td>CNAE09-NACEREV2</td>
+        <td><a href="javascript:void(0);" onclick="generateYasguiLink('', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/nace/NACEREV2>.\n?x xkos:ConceptAssociation ?z.\n}');">CNAE09-NACEREV2</a></td>
     <td><a href="nt-data/correspondencias_cnae09-nacerev2.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
@@ -136,7 +136,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
     </td>
     <td>Correspondencias entre CNAE09 y NACEREV2</td>
-    <td>Obtención del elemento correspondiente a otro de las clasificaciones dadas.</td>
+    <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT  ?z WHERE { \n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n<http://stats.linkeddata.es/voc/clasificaciones/nace/NACEREV2/4/4743> xkos:ConceptAssociation ?z.}\nUNION\n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?z xkos:ConceptAssociation <http://stats.linkeddata.es/voc/clasificaciones/nace/NACEREV2/4/4743>.}\n}');">Obtención del elemento correspondiente a otro de las clasificaciones dadas.</a></td>
   </tr> 
 
   <tr id="tr2">

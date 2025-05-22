@@ -148,6 +148,10 @@
         <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nSELECT ?observation\nWHERE {\n  ?observation a qb:Observation .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
     </tr>
     <tr>
+        <td>¿Cuántos hombres hay en Vitoria sin estudios?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#>  \nPREFIX sdmx-measure:  <http://purl.org/linked-data/sdmx/2009/measure#>  \nSELECT DISTINCT ?x ?z WHERE { \n?x sdmx-measure:obsValue ?z.\n?x rdf:type qb:Observation.\n?x sdmx-dimension:refArea  \"01059 Vitoria-Gasteiz\".\n?x sdmx-dimension:educationLev \"Sin estudios\".\n?x sdmx-dimension:sex \"Hombres\".\n}")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>      
+    <tr>
       <td>¿Cuántas personas alcanzaron el nivel de educación 'Secundaria' en el año 2022?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nSELECT ?cantidad\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev \"Primera etapa de educación secundaria y similar\" ;\n        sdmx-dim:refPeriod \"2022\" ;\n       sdmx-measure:obsValue  ?cantidad .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
     </tr>

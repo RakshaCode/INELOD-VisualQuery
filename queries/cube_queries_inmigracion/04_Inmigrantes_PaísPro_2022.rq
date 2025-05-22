@@ -1,0 +1,16 @@
+# LN: ¿De qué países procedían los inmigrantes en el año 2022?
+
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>
+PREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>
+PREFIX inelod:       <https://stats.linkeddata.es/voc/CAP/#> 
+
+SELECT ?paisProcedencia ?cantidad
+WHERE {
+  ?obs a qb:Observation ;
+       sdmx-dim:refPeriod "2022" ;
+       inelod:countryOfOrigin ?paisProcedencia ;
+       sdmx-measure:obsValue ?cantidad .
+}
+GROUP BY ?paisProcedencia
+ORDER BY DESC(?cantidad)

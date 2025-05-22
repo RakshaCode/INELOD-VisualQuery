@@ -1,0 +1,17 @@
+# LN: ¿Qué combinaciones de lugar de nacimiento y nacionalidad predominan entre los inmigrantes en 2022?
+
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>
+PREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>
+PREFIX inelod:       <https://stats.linkeddata.es/voc/CAP/#> 
+
+SELECT ?lugarNacimiento ?nacionalidad ?cantidad
+WHERE {
+  ?obs a qb:Observation ;
+       sdmx-dim:refPeriod "2022" ;
+       inelod:placeOfBirth ?lugarNacimiento ;
+       inelod:nationality ?nacionalidad ;
+       sdmx-dim:measure ?cantidad .
+}
+GROUP BY ?lugarNacimiento ?nacionalidad
+ORDER BY DESC(?cantidad)

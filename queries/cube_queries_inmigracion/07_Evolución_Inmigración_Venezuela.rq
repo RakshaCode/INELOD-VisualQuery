@@ -1,0 +1,17 @@
+# LN: ¿Cómo ha cambiado la inmigración desde Venezuela entre 2015 y 2022?
+
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>
+PREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>
+PREFIX inelod:       <https://stats.linkeddata.es/voc/CAP/#> 
+
+SELECT ?periodo ?cantidad
+WHERE {
+  ?obs a qb:Observation ;
+       sdmx-dim:refPeriod ?periodo ;
+       inelod:countryOfOrigin "Venezuela" ;
+       sdmx-dim:obsValue ?cantidad .
+  FILTER(?periodo >= "2015" && ?periodo <= "2022")
+}
+GROUP BY ?periodo
+ORDER BY ?periodo

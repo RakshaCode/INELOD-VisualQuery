@@ -1,0 +1,16 @@
+# Número de inmigrantes que llegan cada año.
+# LN: ¿Cuántos inmigrantes hubo en cada año?
+
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>
+PREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>
+
+
+SELECT ?periodo ?cantidad
+WHERE {
+  ?obs a qb:Observation ;
+       sdmx-dim:refPeriod ?periodo ;
+       sdmx-measure:obsValue ?cantidad .
+}
+GROUP BY ?periodo
+ORDER BY ?periodo

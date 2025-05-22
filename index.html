@@ -578,6 +578,23 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
   </tr>
 
   <tr id="tr28">
+    <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fnace%2FNACEREV2%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">NACEREV2</a></td>
+    <td><a href="nt-data/clasificaciones_nacerev2.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
+    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
+    <td><a href="http://www.lexvo.org/page/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
+    <td>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00150/false">INEbase</a><br></span>    
+    </td>
+    <td>Nomenclatura estadística de actividades económicas de la Comunidad Europea Rev 2</td>
+    <td>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV2', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV2', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
+      <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV2', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
+    </td>
+  </tr>  
+
+  <tr id="tr29">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fprovincias%2FPROVINCIAS%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">PROVINCIAS</a></td>
     <td><a href="nt-data/clasificaciones_provincias.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
@@ -592,7 +609,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     </td>
   </tr>
 
-  <tr id="tr29">
+  <tr id="tr30">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fcnae%2FCNAE2025%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">CNAE2025</a></td>
     <td><a href="nt-data/clasificaciones_cnae2025.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
     <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
