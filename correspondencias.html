@@ -151,6 +151,18 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT  ?z WHERE { \n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n<http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE93/6/45421> xkos:ConceptAssociation ?z.}\nUNION\n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?z xkos:ConceptAssociation <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE93/6/45421>.}\n}');">Obtención del elemento correspondiente a otro de las clasificaciones dadas.</a></td>
   </tr> 
 
+  <tr id="tr3">
+    <td><a href="javascript:void(0);" onclick="generateYasguiLink('', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n PREFIX place: <http://purl.org/ontology/places#>\n SELECT DISTINCT ?x ?z WHERE { ?x place:in ?z. \n}');">Municipios por provincia, y provincia por comunidad autónoma e isla con sus códigos</a></td>
+    <td><a href="nt_data/diccionario25.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
+    <td><a href="http://purl.org/NET/rdflicense/cc-by4.0" target="_blank"> <span class="label label-success">CC-BY</span> </a></td>
+    <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
+    <td>
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
+    </td>
+    <td>Municipios por provincia, y provincia por comunidad autónoma e isla con sus códigos</td>
+    <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX place: <http://purl.org/ontology/places#>\nSELECT DISTINCT  ?z WHERE { \n<http://stats.linkeddata.es/voc/mun/{{MUN}}> place:in ?y.\n ?y skos:prefLabel ?z.}');">Obtención de la provincia correspondiente a un municipio dado el código.</a></td>
+  </tr>   
+
 </tbody></table>-
 <hr>
       <footer class="footer">
