@@ -147,6 +147,10 @@
         <td>¿Cuáles son las observaciones que hay disponibles?</td>
         <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nSELECT ?observation\nWHERE {\n  ?observation a qb:Observation .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
     </tr>
+        <tr>
+        <td>¿Cuáles son los cubos de datos que tienen dimensiones geográficas y cuales son estas?</td>
+        <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#> \nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT DISTINCT ?dataset ?dimension ?dimensionLabel\nWHERE {\n  ?dataset qb:structure ?dsd .\n  ?dsd qb:component ?comp .\n  ?comp qb:dimension ?dimension .\n  VALUES ?dimension {\n    sdmx-dim:refArea\n    inelod-voc:municipality\n    inelod-voc:placeOfBirth\n    inelod-voc:countryNationality\n    inelod-voc:countryOfBirth\n    inelod-voc:countryOfOrigin\n    inelod-voc:ccaa\n    inelod-voc:provinces\n    inelod-voc:countryOfResidence\n  }\n}")' target="_blank">Ejecutar Consulta</a></td>
+    </tr>
     <tr>
         <td>¿Cuántos hombres hay en Vitoria sin estudios?</td>
         <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#>  \nPREFIX sdmx-measure:  <http://purl.org/linked-data/sdmx/2009/measure#>  \nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#> \nSELECT DISTINCT ?x ?z WHERE { \n?x inelod-voc:numberOfPeople ?z.\n?x rdf:type qb:Observation.\n?x inelod-voc:municipality  \"01059 Vitoria-Gasteiz\".\n?x sdmx-dimension:educationLev \"Sin estudios\".\n?x sdmx-dimension:sex \"Hombres\".\n}")' target="_blank">Ejecutar Consulta</a></td>
