@@ -14,22 +14,26 @@ function executeSparqlQuery(query) {
 		headers: { "Accept": "application/sparql-results+json" }
 	})
 		.then(response => response.json())
-		.then(data => {
-			// Encabezados
-			let headHtml = '<tr>';
-			data.head.vars.forEach(v => headHtml += '<th>' + v + '</th>');
-			headHtml += '</tr>';
-			document.getElementById('table-head').innerHTML = headHtml;
-
-			// Filas
-			let bodyHtml = '';
-			data.results.bindings.forEach(row => {
-				bodyHtml += '<tr>';
-				data.head.vars.forEach(v => {
-					bodyHtml += '<td>' + (row[v] ? row[v].value : '') + '</td>';
-				});
-				bodyHtml += '</tr>';
-			});
-			document.getElementById('table-body').innerHTML = bodyHtml;
-		});
+		.then(data => displayResultsInTable(data));
 }
+
+// Mostrar resultados en la tabla
+function displayResultsInTable(data) {
+	// Encabezados
+	let headHtml = '<tr>';
+	data.head.vars.forEach(v => headHtml += '<th>' + v + '</th>');
+	headHtml += '</tr>';
+	document.getElementById('table-head').innerHTML = headHtml;
+
+	// Filas
+	let bodyHtml = '';
+	data.results.bindings.forEach(row => {
+		bodyHtml += '<tr>';
+		data.head.vars.forEach(v => {
+			bodyHtml += '<td>' + (row[v] ? row[v].value : '') + '</td>';
+		});
+		bodyHtml += '</tr>';
+	});
+	document.getElementById('table-body').innerHTML = bodyHtml;
+}
+
