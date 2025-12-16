@@ -76,8 +76,12 @@ WHERE {
 // Execute query with the selected CCAA
 function executeQueryWithSelectedCCAA() {
 	const selectedCCAA = document.getElementById('ccaa-selector').value;
+	const selectedCube = document.getElementById('cube-selector').value;
 
-	const query = `
+	let query = '';
+
+	if ("estancia-media" == selectedCube) {
+		query = `
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>
 PREFIX qb: <http://purl.org/linked-data/cube#>
@@ -92,6 +96,8 @@ SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
     OPTIONAL {?observation inelod:averageStay ?averageStay.}
     OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}
 } LIMIT 100`;
+	}
+
 
 	displayQueryInTable(query);
 }
