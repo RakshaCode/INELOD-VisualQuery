@@ -84,15 +84,15 @@
     "metadata": {}
   },
   {
-    "kind": 1,
-    "language": "markdown",
-    "value": "",
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\n\r\nSELECT DISTINCT ?observation\r\nWHERE {\r\n    ?observation inelod:ccaa \"13 Madrid, Comunidad de\" .\r\n} LIMIT 10",
     "metadata": {}
   },
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\n\r\nSELECT DISTINCT ?observation\r\nWHERE {\r\n    ?observation inelod:ccaa \"13 Madrid, Comunidad de\" .\r\n} LIMIT 10",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\n\r\nSELECT DISTINCT ?ccaa\r\nWHERE {\r\n    ?observation a qb:Observation;\r\n        inelod:ccaa ?ccaa .\r\n}",
     "metadata": {}
   }
 ]
