@@ -1,0 +1,11 @@
+http://stats.linkeddata.es/voc/clasificaciones/
+http://stats.linkeddata.es/voc/clasificaciones
+http://stats.linkeddata.es/voc/cubes/turismo
+http://stats.linkeddata.es/voc/cubes/mercado_laboral
+http://stats.linkeddata.es/voc/cubes/poblacion
+http://stats.linkeddata.es/voc/cubes/servicios
+http://stats.linkeddata.es/voc/correspondencias
+http://stats.linkeddata.es/voc/cubes/metadata
+
+No funciona:
+http://stats.linkeddata.es/voc/cubes/immigracion

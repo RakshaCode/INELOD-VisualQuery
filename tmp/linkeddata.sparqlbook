@@ -1,0 +1,98 @@
+[
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# Notebook linkeddata.sparqlbook",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "# CCAA",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Todas las comunidades",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\n\r\nSELECT DISTINCT ?ccaaLabel WHERE {\r\n    ?ccaa a skos:Concept.\r\n    ?ccaa skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/ccaa/CCAA>.\r\n    ?ccaa skos:prefLabel ?ccaaLabel.\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Extraer la CCAA de Comunidad de Madrid",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT DISTINCT ?ccaa WHERE {\r\n    ?ccaa skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/ccaa/CCAA>.\r\n    ?ccaa skos:prefLabel \"Madrid, Comunidad de\"@es.\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Lograr que para la ccaa Comunidad de Madrid provincia Madrid devuelva los datos del cubo 2940 “Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.”",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\nPREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>\r\nPREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {\r\n    BIND(\"13 Madrid, Comunidad de\" AS ?ccaa)\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>;\r\n        inelod:ccaa ?ccaa.\r\n    OPTIONAL {?observation inelod:lodgingType ?lodging.}\r\n    OPTIONAL {?observation inelod:averageStay ?averageStay.}\r\n    OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}\r\n} LIMIT 100",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Experimentos cubo 2940 comunidad de Madrid",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Muestra una observación específica",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\n\r\nSELECT DISTINCT ?observation ?y ?z  WHERE {\r\n    BIND(<https://stats.linkeddata.es/voc/cubes/2940/o1000> AS ?observation)\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>.\r\n    ?observation ?y ?z.\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Recoge todas las observaciones que no tienen comunidad autonoma.",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>\nPREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\n\nSELECT DISTINCT count(*)  WHERE {\n    ?x qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>.\n    FILTER NOT EXISTS {\n        ?x inelod:ccaa ?y.\n    }\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Encontrar la propiedad que pueda relacionar las CCAA de las observaciones del cubo 2940 con las CCAA http://stats.linkeddata.es/voc/clasificaciones/ccaa/CCAA\r\n**Conclusión:** No se puede porque las CCAA que se definen en *inelod:ccaa* como un string sin niguna otra propiedad (no tiene tipo \"rdf:type\") y las que se definen en clasificaciones:ccaa/CCAA son distintas",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\n\r\nSELECT DISTINCT ?observation\r\nWHERE {\r\n    ?observation inelod:ccaa \"13 Madrid, Comunidad de\" .\r\n} LIMIT 10",
+    "metadata": {}
+  }
+]
