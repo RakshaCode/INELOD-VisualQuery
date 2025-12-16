@@ -130,5 +130,41 @@
     "language": "sparql",
     "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT DISTINCT ?p ?label WHERE {\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/65334>;\r\n        ?p ?z.\r\n    OPTIONAL {?observation rdf:label ?label.}\r\n}",
     "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Grafos",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Número de cubos que hay en el grafo principal de INELOD",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT DISTINCT COUNT(?dataSet) WHERE {\r\n        ?observation qb:dataSet ?dataSet.\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "Comprobar los cubos que devuelve un grafo en específico",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT COUNT(DISTINCT ?dataSet) WHERE {\r\n    GRAPH <http://stats.linkeddata.es/voc/cubes/immigracion> {\r\n        ?observation qb:dataSet ?dataSet.\r\n    }\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Tras comprobar cada uno de los grafos (especificados en el fichero `lista_grafos.txt`) esta es la tabla con el número de cubos en cada grafo:\r\n\r\n\r\n| Grafo | Nº de cubos |\r\n| --- | --- |\r\n| http://stats.linkeddata.es/voc/clasificaciones/       |   0 |\r\n| http://stats.linkeddata.es/voc/clasificaciones        |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/turismo          |   5 |\r\n| http://stats.linkeddata.es/voc/cubes/mercado_laboral  |   4 |\r\n| http://stats.linkeddata.es/voc/cubes/poblacion        |   1 |\r\n| http://stats.linkeddata.es/voc/cubes/servicios        |   1 |\r\n| http://stats.linkeddata.es/voc/correspondencias       |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/metadata         |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/immigracion      |   NO FUNCIONA |\r\n\r\n",
+    "metadata": {}
   }
 ]
