@@ -107,23 +107,8 @@
       <label for="ccaa-selector">Selecciona una comunidad autónoma:</label>
       <select id="ccaa-selector">
       </select>
+      <button class="query-button" onclick="executeQueryWithSelectedCCAA()">Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.</button>
     </div>
-    <a class="query-button" onclick='displayQueryInTable(`
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>
-PREFIX qb: <http://purl.org/linked-data/cube#>
-PREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>
-PREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>
-
-SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
-    BIND("13 Madrid, Comunidad de" AS ?ccaa)
-    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>;
-        inelod:ccaa ?ccaa.
-    OPTIONAL {?observation inelod:lodgingType ?lodging.}
-    OPTIONAL {?observation inelod:averageStay ?averageStay.}
-    OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}
-} LIMIT 100
-`)' target="_blank">Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.</a>
   </div>
   <div id="results-table-container">
     <table id="results-table">

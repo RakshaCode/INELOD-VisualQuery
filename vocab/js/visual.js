@@ -1,17 +1,17 @@
-// Constantes
+// Constants
 const SPARQL_ENDPOINT = "https://stats.linkeddata.es/sparql";
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', loadCCAA);
 
-// Inicialización de componentes al cargar la página
+// Initialization of components on page load
 $(document).ready(function () {
 	$("#tablesorter-demo").tablesorter();
 	$("#tablesorter-demo").stickyTableHeaders();
 	$('[data-toggle="tooltip"]').tooltip();
 });
 
-// Ejecutar consulta SPARQL y devuelve los datos
+// Execute SPARQL query and return data
 function executeSparqlQuery(query) {
 	return fetch(SPARQL_ENDPOINT + "?query=" + encodeURIComponent(query), {
 		headers: { "Accept": "application/sparql-results+json" }
@@ -19,22 +19,22 @@ function executeSparqlQuery(query) {
 		.then(response => response.json());
 }
 
-// Mostrar resultados en la tabla
+// Display results in the table
 function displayQueryInTable(query) {
-	// Limpia la tabla
+	// Clear the table
 	document.getElementById('table-head').innerHTML = '';
 	document.getElementById('table-body').innerHTML = '';
 
-	// Ejecuta la consulta y llena la tabla
+	// Execute the query and fill the table
 	data = executeSparqlQuery(query)
 		.then(data => {
-			// Encabezados
+			// Headers
 			let headHtml = '<tr>';
 			data.head.vars.forEach(v => headHtml += '<th>' + v + '</th>');
 			headHtml += '</tr>';
 			document.getElementById('table-head').innerHTML = headHtml;
 
-			// Filas
+			// Rows
 			let bodyHtml = '';
 			data.results.bindings.forEach(row => {
 				bodyHtml += '<tr>';
@@ -47,7 +47,7 @@ function displayQueryInTable(query) {
 		});
 }
 
-// Cargar comunidades autónomas en el selector
+// Load CCAA into the selector
 function loadCCAA() {
 	const query = `
 PREFIX qb: <http://purl.org/linked-data/cube#>
@@ -71,5 +71,28 @@ WHERE {
 				selector.appendChild(option);
 			});
 		});
+}
+
+// Execute query with the selected CCAA
+function executeQueryWithSelectedCCAA() {
+	const selectedCCAA = document.getElementById('ccaa-selector').value;
+
+	const query = `
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>
+PREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
+    BIND("${selectedCCAA}" AS ?ccaa)
+    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>;
+        inelod:ccaa ?ccaa.
+    OPTIONAL {?observation inelod:lodgingType ?lodging.}
+    OPTIONAL {?observation inelod:averageStay ?averageStay.}
+    OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}
+} LIMIT 100`;
+
+	displayQueryInTable(query);
 }
 
