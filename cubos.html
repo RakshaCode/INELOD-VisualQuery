@@ -7,7 +7,7 @@
     <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
     <meta name="language" content="Spanish">
     <meta name="author" content="Diego Conde">
-    
+
     <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
     <script src="vocab/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
@@ -16,12 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-      $(document).ready(function() 
-        { 
-          $("#tablesorter-demo").tablesorter(); 
-          $("#tablesorter-demo").stickyTableHeaders(); 
-          $('[data-toggle="tooltip"]').tooltip(); 
-        }); 
+      $(document).ready(function()
+        {
+          $("#tablesorter-demo").tablesorter();
+          $("#tablesorter-demo").stickyTableHeaders();
+          $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
     <!-- Le styles -->
@@ -32,7 +32,7 @@
         padding-bottom: 40px;
       }
     </style>
-    
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="vocab/js/html5shiv.js"></script>
@@ -60,6 +60,7 @@
         <li class="active"><a href="#">Cubos de datos</a></li>
         <li><a href="queries.html">Data Stories</a></li>
         <li><a href="misc.html">Miscelanea</a></li>
+        <li><a href="visual.html">Visualización</a></li>
       </ul>
     </div>
   </div>
@@ -72,13 +73,13 @@
         <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística. Esta pestaña contiene los cubos de datos en RDF.</p>
       </div>
       <hr>
-<div class="row"> 
+<div class="row">
 <div class="ui-widget">
-<!--<div class="col-md-3" > 
+<!--<div class="col-md-3" >
 <p class="text-right"><label for="tags">Filter by title or domain: </label></p>
 </div>
 
-<div class="col-md-8" > 
+<div class="col-md-8" >
 <input class="form-control" id="tags" >
 <button id="remButt" class="label label-default" onclick="showRows();" style="font-size: 75%; font-weight: bold; line-height: 1; display: none;"><span class="submit glyphicon glyphicon-remove"></span>  Remove filter</button>
 </div>
@@ -103,7 +104,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
   processQuery(queryInput);
   function processQuery(queryTemplate) {
     const query = queryTemplate.replace("{{CLASI1}}", clasif1);
-          query = queryTemplate.replace("{{CLASI2}}", clasif2);   
+          query = queryTemplate.replace("{{CLASI2}}", clasif2);
     const encodedQuery = encodeURIComponent(query);
     const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
     window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
@@ -136,7 +137,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66615&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66615&L=0">INEbase</a><br></span>
     </td>
     <td>Nivel de estudios completados: Población de 15 y más años por sexo, edad y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
     <td>
@@ -153,7 +154,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66616&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66616&L=0">INEbase</a><br></span>
     </td>
     <td>Nivel de estudios completados: Población de 15 y más años por sexo, grupos de edad, nacionalidad (española/extranjera) y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
     <td>
@@ -161,7 +162,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<http://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('66616', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#>  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet <http://stats.linkeddata.es/voc/cubes/{{CLASI}}>.}');">Conjunto de observaciones de la tabla.</a>
     </td>
-  </tr>  
+  </tr>
 
   <tr id="tr3"></tr>
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('66617', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX qb: <http://purl.org/linked-data/cube#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x qb:dataSet <http://stats.linkeddata.es/voc/cubes/{{CLASI}}>.\n}');">Tabla 66617.</a></td>
@@ -170,7 +171,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66617&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66617&L=0">INEbase</a><br></span>
     </td>
     <td>Nivel de estudios completados: Población de 15 y más años por sexo, grupos de edad, lugar de nacimiento (España/extranjero) y nivel de estudios (detalle) (Capitales de provincia y principales ciudades)</td>
     <td>
@@ -187,7 +188,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66618&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66618&L=0">INEbase</a><br></span>
     </td>
     <td>Nivel de estudios completados: Población de 15 y más años por sexo, país de nacimiento (principales países) y nivel de estudios (agrupado) (Capitales de provincia y principales ciudades)</td>
     <td>
@@ -204,7 +205,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66619&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=66619&L=0">INEbase</a><br></span>
     </td>
     <td>Nivel de estudios completados: Población de 15 y más años por sexo, país de nacionalidad (principales países) y nivel de estudios (agrupado) (Capitales de provincia y principales ciudades)</td>
     <td>
@@ -212,7 +213,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('66619', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?b ?z WHERE { \n?x ?a ?y.\n?y ?b ?z.\n<http://stats.linkeddata.es/voc/cubes/{{CLASI}}> qb:structure ?x.\n?x rdf:type qb:DataStructureDefinition.\n?x qb:component ?y.\n?y ?b ?z.  \n}');">Estructura del cubo de datos.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('66619', 'PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#>  \nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.\n?x rdf:type qb:Observation.\n?x qb:dataSet <http://stats.linkeddata.es/voc/cubes/{{CLASI}}>.}');">Conjunto de observaciones de la tabla.</a>
     </td>
-  </tr>  
+  </tr>
 </tbody></table>
 
 <h2 id="inmigración" style="text-align: center;">Inmigración</h2>
@@ -236,7 +237,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Inmigraciones procedentes del extranjero por año, sexo y edad</td>
     <td>
@@ -252,7 +253,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Inmigraciones procedentes del extranjero por año, sexo, edad (grandes grupos), nacionalidad y país de nacimiento (España/extranjero)</td>
     <td>
@@ -268,7 +269,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Inmigraciones procedentes del extranjero por año, sexo, edad (grandes grupos), país de nacimiento y nacionalidad (española/extranjera)</td>
     <td>
@@ -284,7 +285,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Inmigraciones procedentes del extranjero por año, sexo, país de procedencia y nacionalidad (española/extranjera)</td>
     <td>
@@ -318,7 +319,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65334&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65334&L=0">INEbase</a><br></span>
     </td>
     <td>Tasas de paro por distintos grupos de edad, sexo y comunidad autónoma</td>
     <td>
@@ -334,7 +335,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65349&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65349&L=0">INEbase</a><br></span>
     </td>
     <td>Tasas de actividad, paro y empleo por provincia y sexo</td>
     <td>
@@ -350,7 +351,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65353&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65353&L=0">INEbase</a><br></span>
     </td>
     <td>Distribución porcentual de los activos por sector económico y provincia</td>
     <td>
@@ -366,7 +367,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65123&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=65123&L=0">INEbase</a><br></span>
     </td>
     <td>Ocupados por sexo y rama de actividad. Valores absolutos y porcentajes respecto del total de cada sexo</td>
     <td>
@@ -400,7 +401,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Albacete: Población por municipios y sexo.</td>
     <td>
@@ -434,7 +435,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=70001&L=0">INEbase</a><br></span>
     </td>
     <td>Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas..</td>
     <td>
@@ -467,7 +468,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10821&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10821&L=0">INEbase</a><br></span>
     </td>
     <td>Número de visitantes según tipología</td>
     <td>
@@ -483,7 +484,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10822&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10822&L=0">INEbase</a><br></span>
     </td>
     <td>Número de turistas según país de residencia</td>
     <td>
@@ -499,7 +500,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10823&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=10823&L=0">INEbase</a><br></span>
     </td>
     <td>Número de turistas según comunidad autónoma de destino principal</td>
     <td>
@@ -515,7 +516,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=13864&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=13864&L=0">INEbase</a><br></span>
     </td>
     <td>Número de turistas según motivo principal del viaje</td>
     <td>
@@ -531,7 +532,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=23988&L=0">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://ine.es/jaxiT3/Tabla.htm?t=23988&L=0">INEbase</a><br></span>
     </td>
     <td>Número de turistas según comunidad autónoma de destino principal</td>
     <td>
@@ -545,9 +546,9 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
 
 
 <script>
-$(document).ready(function() { 
-  $("#tablesorter-inmigracion").tablesorter(); 
-  $("#tablesorter-inmigracion").stickyTableHeaders(); 
+$(document).ready(function() {
+  $("#tablesorter-inmigracion").tablesorter();
+  $("#tablesorter-inmigracion").stickyTableHeaders();
 });
 </script>
 
@@ -567,6 +568,6 @@ $(document).ready(function() {
       </div>
       </div>
       </footer>
-    </div> 
+    </div>
   </body>
 </html>

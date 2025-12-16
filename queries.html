@@ -7,7 +7,7 @@
     <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
     <meta name="language" content="Spanish">
     <meta name="author" content="Diego Conde">
-    
+
     <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
     <script src="vocab/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
@@ -16,12 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-      $(document).ready(function() 
-        { 
-          $("#tablesorter-demo").tablesorter(); 
-          $("#tablesorter-demo").stickyTableHeaders(); 
-          $('[data-toggle="tooltip"]').tooltip(); 
-        }); 
+      $(document).ready(function()
+        {
+          $("#tablesorter-demo").tablesorter();
+          $("#tablesorter-demo").stickyTableHeaders();
+          $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
     <script>
@@ -30,7 +30,7 @@
             const encodedEndpoint = encodeURIComponent("https://stats.linkeddata.es/sparql");
             window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
         }
-    </script>    
+    </script>
 
     <!-- Le styles -->
     <link href="vocab/css/bootstrap.css" rel="stylesheet">
@@ -65,7 +65,7 @@
                 background-color: #0056b3;
             }
         </style>
-    
+
 
     <!-- Fav and touch icons -->
   </head>
@@ -89,6 +89,7 @@
         <li><a href="cubos.html">Cubos de datos</a></li>
         <li class="active"><a href="#">Data Stories</a></li>
         <li><a href="misc.html">Miscelanea</a></li>
+        <li><a href="visual.html">Visualización</a></li>
       </ul>
     </div>
   </div>
@@ -101,7 +102,7 @@
         <p class="lead">Este es un catálogo de consultas SPARQL (junto a su correspondencia en lenguaje natural) que son útiles para diferentes propósitos. Las consultas se pueden obtener como ficheros independientes dentro de la carpeta del proyecto, para facilitar el mantenimiento y la generación de otras consultas para distintos conjuntos de datos del INE, además de los cambios a la ontología y vocabularios.</p>
       </div>
       <hr>
-<div class="row"> 
+<div class="row">
 <div class="ui-widget">
 
 <table>
@@ -155,7 +156,7 @@
     <tr>
         <td>¿Cuántos hombres hay en Vitoria sin estudios?</td>
         <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX sdmx-dimension:  <http://purl.org/linked-data/sdmx/2009/dimension#>  \nPREFIX sdmx-measure:  <http://purl.org/linked-data/sdmx/2009/measure#>  \nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#> \nSELECT DISTINCT ?x ?z WHERE { \n?x inelod-voc:numberOfPeople ?z.\n?x rdf:type qb:Observation.\n?x inelod-voc:municipality  \"01059 Vitoria-Gasteiz\".\n?x sdmx-dimension:educationLev \"Sin estudios\".\n?x sdmx-dimension:sex \"Hombres\".\n}")' target="_blank">Ejecutar Consulta</a></td>
-    </tr>      
+    </tr>
     <tr>
       <td>¿Cuántas personas alcanzaron el nivel de educación 'Secundaria' en el año 2022?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX ex: <http://example.org/ns/>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?cantidad\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:educationLev \"Primera etapa de educación secundaria y similar\" ;\n        sdmx-dim:refPeriod \"2022\" ;\n       inelod-voc:numberOfPeople  ?cantidad .\n}\n")' target="_blank">Ejecutar Consulta</a></td>
@@ -191,7 +192,7 @@
     <tr>
       <td>¿Cómo se distribuye el nivel educativo según la provincia y nacionalidad?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX place: <http://purl.org/ontology/places#>\nPREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?provLabel ?nationality ?nivelFormacion (SUM(?cantidad) AS ?totalPersonas)\nWHERE {\n  ?obs a qb:Observation ;\n	   inelod-voc:municipality ?munLab ;\n  	   sdmx-dim:educationLev ?nivelFormacion ;\n       sdmx-dim:refPeriod \"2022\" ;\n       inelod-voc:nationality ?nationality;\n       inelod-voc:numberOfPeople ?cantidad .\n  ?mun skos:prefLabel ?munLab;\n       place:in ?prov .\n  ?prov place:in ?comunidad;\n        skos:prefLabel ?provLabel.\n}\nGROUP BY ?provLabel ?nationality ?nivelFormacion\nORDER BY ?provLabel ?nationality ?nivelFormacion")' target="_blank">Ejecutar Consulta</a></td>
-    </tr>  
+    </tr>
 </table>
 <table>
 <h3>Demografía</h3>
@@ -230,7 +231,7 @@
   <tr>
       <td>¿Qué combinaciones de lugar de nacimiento y nacionalidad predominan entre los inmigrantes en 2022?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX dcat: <http://www.w3.org/ns/dcat#> \nPREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?lugarNacimiento ?nacionalidad (SUM(?cantidad) AS ?total)\nWHERE {\n  ?obs a qb:Observation ;\n   qb:dataSet ?dataset;\n    sdmx-dim:refPeriod \"2022\" ;\n       inelod:countryOfBirth ?lugarNacimiento ;\n       inelod:nationality ?nacionalidad ;\n       inelod:numberOfPeople ?cantidad .\n ?dataset dcat:theme <http://datos.gob.es/kos/sector-publico/sector/inmigracionyemigracion>\n}\nGROUP BY ?lugarNacimiento ?nacionalidad\nORDER BY DESC(?total)")' target="_blank">Ejecutar Consulta</a></td>
-  </tr>    
+  </tr>
 </table>
 
 <table>
@@ -250,7 +251,7 @@
   <tr>
       <td>¿Cuántos turistas se han acumulado en lo que va de año por comunidad autónoma y periodo?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#> \nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nSELECT ?comunidad ?periodo (SUM(?turistasAcumulados) AS ?totalAcumulado)\nWHERE {\n  ?obs a qb:Observation ;\n       inelod:ccaa ?comunidad ;\n       sdmx-dim:refPeriod ?periodo ;\n       inelod:numberOfTouristsAccumulated ?turistasAcumulados .\n  FILTER(STRSTARTS(STR(?periodo), \"2024\"))\n}\nGROUP BY ?comunidad ?periodo\nORDER BY ?comunidad ?periodo")' target="_blank">Ejecutar Consulta</a></td>
-  </tr>   
+  </tr>
   <tr>
       <td>¿Cuál es la tasa de variación acumulada según el motivo del viaje y el país de residencia para el periodo 2024-12?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX ex: <http://example.org/>\nPREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#> \nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nSELECT ?dimensionTipo ?dimensionValor ?tasaAcumulada\nWHERE {\n  {\n    ?obs a qb:Observation ;\n         inelod:countryOfResidence ?dimensionValor ;\n         inelod:numberOfTouristsAccumulatedVarianceRate ?tasaAcumulada ;\n         sdmx-dim:refPeriod \"2024M12\" .\n    BIND(\"PaísResidencia\" AS ?dimensionTipo)\n  }\n  UNION\n  {\n  	?obs a qb:Observation ;\n         inelod:travelReason ?dimensionValor ;\n         inelod:numberOfTouristsAccumulatedVarianceRate ?tasaAcumulada ;\n         sdmx-dim:refPeriod \"2024M12\" .\n    BIND(\"MotivoViaje\" AS ?dimensionTipo)\n  }\n}")' target="_blank">Ejecutar Consulta</a></td>
@@ -258,7 +259,7 @@
   <tr>
       <td>¿Cómo ha evolucionado el número de turistas mes a mes por comunidad autónoma durante el año 2024?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#> \nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nSELECT ?comunidad ?periodo (SUM(?numTuristas) AS ?total)\nWHERE {\n  ?obs a qb:Observation ;\n       inelod:ccaa ?comunidad ;\n       sdmx-dim:refPeriod ?periodo ;\n       inelod:numberOfTouristsABSValue ?numTuristas .\n  FILTER(STRSTARTS(STR(?periodo), \"2024\"))\n}\nGROUP BY ?comunidad ?periodo\nORDER BY ?comunidad ?periodo")' target="_blank">Ejecutar Consulta</a></td>
-  </tr> 
+  </tr>
 </table>
 
 <table>
@@ -278,7 +279,7 @@
   <tr>
       <td>¿Cuál es la tasa de actividad por sexo en cada provincia?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX place: <http://purl.org/ontology/places/>\nPREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?provLabel ?sexo (AVG(?tasaActividad) AS ?tasaMediaActividad)\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:refPeriod ?periodo ;\n       sdmx-dim:sex ?sexo ;\n       inelod:provinces ?provLabel ;  \n       inelod:activityRate ?tasaActividad .\n}\nGROUP BY ?provLabel ?sexo \nORDER BY ?provLabel ?sexo")' target="_blank">Ejecutar Consulta</a></td>
-  </tr>   
+  </tr>
   <tr>
       <td>¿Cuáles son las comunidades con mayor tasa media de paro durante el año 2023.?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?comunidad (AVG(?tasaParo) AS ?tasaMediaParo)\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:refPeriod ?periodo ;\n       inelod:ccaa ?comunidad ;\n       inelod:unemploymentRate ?tasaParo .\n	FILTER(STRSTARTS(STR(?periodo), \"2023\"))\n}\nGROUP BY ?comunidad\nORDER BY DESC(?tasaMediaParo)")' target="_blank">Ejecutar Consulta</a></td>
@@ -286,7 +287,7 @@
   <tr>
       <td>¿Ccómo varía la media de porcentaje de empleo según la actividad económica y el sexo de los trabajadores?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim: <http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?actividad ?sexo (AVG(?porcentajeEmpleo) AS ?mediaporcentajeEmpleo)\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:refPeriod ?periodo ;\n       inelod:economicalActivity ?actividad ;\n       sdmx-dim:sex ?sexo ;\n       inelod:employedPercentage ?porcentajeEmpleo.\n  	FILTER(STRSTARTS(STR(?periodo), \"2022\"))\n}\nGROUP BY ?actividad ?sexo\nORDER BY DESC(?mediaporcentajeEmpleo)")' target="_blank">Ejecutar Consulta</a></td>
-  </tr> 
+  </tr>
 </table>
 
 <table>
@@ -314,7 +315,7 @@
   <tr>
       <td>¿Cuál es el nivel educativo de los inmigrantes según el sexo y el grupo de edad?</td>
       <td><a class="query-button" onclick='generateYasguiLink("PREFIX qb: <http://purl.org/linked-data/cube#>\nPREFIX sdmx-dim:<http://purl.org/linked-data/sdmx/2009/dimension#>\nPREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#>\nPREFIX inelod-voc: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\nSELECT ?sexo ?grupoEdad ?nivelFormacion (SUM(?cantidad) AS ?total)\nWHERE {\n  ?obs a qb:Observation ;\n       sdmx-dim:sex ?sexo ;\n       inelod-voc:ageGroup ?grupoEdad ;\n       sdmx-dim:educationLev ?nivelFormacion ;\n       inelod-voc:placeOfBirth ?lugarNacimiento ;\n       sdmx-dim:refPeriod \"2022\" ;\n       inelod-voc:numberOfPeople ?cantidad .\n  FILTER(?lugarNacimiento != \"España\")\n}\nGROUP BY ?sexo ?grupoEdad ?nivelFormacion\nORDER BY ?sexo ?grupoEdad ?nivelFormacion")' target="_blank">Ejecutar Consulta</a></td>
-  </tr>   
+  </tr>
 </table>
 
 <table>

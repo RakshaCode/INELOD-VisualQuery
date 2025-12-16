@@ -7,7 +7,7 @@
     <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
     <meta name="language" content="Spanish">
     <meta name="author" content="Diego Conde">
-    
+
     <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
     <script src="vocab/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
@@ -16,12 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-      $(document).ready(function() 
-        { 
-          $("#tablesorter-demo").tablesorter(); 
-          $("#tablesorter-demo").stickyTableHeaders(); 
-          $('[data-toggle="tooltip"]').tooltip(); 
-        }); 
+      $(document).ready(function()
+        {
+          $("#tablesorter-demo").tablesorter();
+          $("#tablesorter-demo").stickyTableHeaders();
+          $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
     <!-- Le styles -->
@@ -32,7 +32,7 @@
         padding-bottom: 40px;
       }
     </style>
-    
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="vocab/js/html5shiv.js"></script>
@@ -60,6 +60,7 @@
         <li><a href="cubos.html">Cubos de datos</a></li>
         <li><a href="queries.html">Data Stories</a></li>
         <li><a href="misc.html">Miscelanea</a></li>
+        <li><a href="visual.html">Visualización</a></li>
       </ul>
     </div>
   </div>
@@ -72,13 +73,13 @@
         <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística. Esta pestaña contiene las clasificaciones estadísticas. </p>
       </div>
       <hr>
-<div class="row"> 
+<div class="row">
 <div class="ui-widget">
-<!--<div class="col-md-3" > 
+<!--<div class="col-md-3" >
 <p class="text-right"><label for="tags">Filter by title or domain: </label></p>
 </div>
 
-<div class="col-md-8" > 
+<div class="col-md-8" >
 <input class="form-control" id="tags" >
 <button id="remButt" class="label label-default" onclick="showRows();" style="font-size: 75%; font-weight: bold; line-height: 1; display: none;"><span class="submit glyphicon glyphicon-remove"></span>  Remove filter</button>
 </div>
@@ -103,7 +104,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
   processQuery(queryInput);
   function processQuery(queryTemplate) {
     const query = queryTemplate.replace("{{CLASI1}}", clasif1);
-          query = queryTemplate.replace("{{CLASI2}}", clasif2);   
+          query = queryTemplate.replace("{{CLASI2}}", clasif2);
     const encodedQuery = encodeURIComponent(query);
     const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
     window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
@@ -192,7 +193,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('cn/CN2023', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
     </td>
     </tr>
-  
+
   <tr id="tr5">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fcnae%2FCNAE09%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">CNAE2009</a></td>
     <td><a href="nt-data/clasificaciones_cnae2009.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
@@ -200,7 +201,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00020/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00020/false">INEbase</a><br></span>
       </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 2009</td>
     <td>
@@ -217,7 +218,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00015/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00015/false">INEbase</a><br></span>
       </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 1993</td>
     <td>
@@ -234,7 +235,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00600/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00600/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Niveles Educativos.</td>
     <td>
@@ -251,7 +252,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00650/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00650/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Niveles de Formación.</td>
     <td>
@@ -268,7 +269,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00700/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00700/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Educación. CNED 2000. Sectores de Estudio.</td>
     <td>
@@ -285,7 +286,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00730/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00730/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de programas, titulaciones y certificaciones en niveles de formación alcanzados (CNED-A), 2014.</td>
     <td>
@@ -301,7 +302,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00740/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00740/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de programas y titulaciones en sectores de estudio (CNED-F), 2014.</td>
     <td>
@@ -318,7 +319,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00720/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00720/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de programas en niveles educativos (CNED-P), 2014.</td>
     <td>
@@ -335,7 +336,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00810/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00810/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Ocupaciones. CNO 2011.</td>
     <td>
@@ -352,7 +353,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00800/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00800/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Ocupaciones. CNO 1994.</td>
     <td>
@@ -369,7 +370,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C01000/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C01000/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de bienes y servicios. COICOP 2016.</td>
     <td>
@@ -386,7 +387,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00375/false">INEbase</a><br></span>   
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00375/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2.1.</td>
     <td>
@@ -395,7 +396,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA21', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
   </tr>
-  
+
   <tr id="tr17">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fcpa%2FCPA21ENG%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">CPA21ENG</a></td>
     <td><a href="nt-data/clasificaciones_cpa21eng.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
@@ -403,7 +404,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/en" target="_blank"> <span class="label label-primary">en</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00370/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00370/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2.1.</td>
     <td>
@@ -420,7 +421,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00300/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00300/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2002.</td>
     <td>
@@ -437,7 +438,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00350/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00350/false">INEbase</a><br></span>
     </td>
     <td>Clasificación de Productos por Actividades. CPA 2008.</td>
     <td>
@@ -446,7 +447,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('cpa/CPA2008', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
   </tr>
-  
+
   <tr id="tr20">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fcpc%2FCPC21%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">CPC21</a></td>
     <td><a href="nt-data/clasificaciones_cpc21.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
@@ -454,7 +455,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00365/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00365/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Central de Productos (CPC) Versión 2.1</td>
     <td>
@@ -470,7 +471,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00920/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00920/false">INEbase</a><br></span>
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2011, Logros educativos</td>
     <td>
@@ -486,7 +487,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00910/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00910/false">INEbase</a><br></span>
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2011, Programas</td>
     <td>
@@ -502,7 +503,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00930/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00930/false">INEbase</a><br></span>
 
     </td>
     <td>Clasificación internacional normalizada de la educación ISCED 2013</td>
@@ -511,7 +512,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('isced/ISCEDF13', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
     </td>
   </tr>
-  
+
   <tr id="tr24">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fisco%2FISCO08%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">ISCO08</a></td>
     <td><a href="nt-data/clasificaciones_isco08.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
@@ -519,14 +520,14 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00860/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00860/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Internacional Uniforme de Ocupaciones, 2008</td>
     <td>
       <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO08', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO08', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
     </td>
-  </tr> 
+  </tr>
 
   <tr id="tr25">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fisco%2FISCO88%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">ISCO88</a></td>
@@ -535,7 +536,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00850/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00850/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Internacional Uniforme de Ocupaciones, 1988</td>
     <td>
@@ -543,7 +544,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('isco/ISCO88', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
     </td>
   </tr>
-  
+
   <tr id="tr26">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fisic%2FISICREV4%3E%7D%0D%0A&format=text%2Fhtml&timeout=0&signal_void=on">ISICREV4</a></td>
     <td><a href="nt-data/clasificaciones_isicrev4.nt" target="_blank"> <span class="label label-primary">N-Triples</span> </a></td>
@@ -551,7 +552,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00450/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00450/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Industrial Internacional Uniforme de todas las actividades económicas, Revisión 4</td>
     <td>
@@ -559,7 +560,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('isic/ISICREV4', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('isic/ISICREV4', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
-  </tr> 
+  </tr>
 
   <tr id="tr27">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fnace%2FNACEREV11%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">NACEREV11</a></td>
@@ -568,7 +569,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00150/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00150/false">INEbase</a><br></span>
     </td>
     <td>Nomenclatura estadística de actividades económicas de la Comunidad Europea Rev.1.1</td>
     <td>
@@ -585,7 +586,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/eng" target="_blank"> <span class="label label-primary">en</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00150/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00150/false">INEbase</a><br></span>
     </td>
     <td>Nomenclatura estadística de actividades económicas de la Comunidad Europea Rev 2</td>
     <td>
@@ -593,7 +594,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV2', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('nace/NACEREV2', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
-  </tr>  
+  </tr>
 
   <tr id="tr29">
     <td><a href="https://stats.linkeddata.es/sparql?default-graph-uri=&query=PREFIX++xkos%3A+%3Chttp%3A%2F%2Frdf-vocabulary.ddialliance.org%2Fxkos%23%3E%0D%0ASELECT+%3Fx+%3Fy+%3Fz%0D%0AWHERE+%7B%0D%0A+%3Fx+%3Fy+%3Fz+.%0D%0A+%3Fx+skos%3AinScheme+%3Chttp%3A%2F%2Fstats.linkeddata.es%2Fvoc%2Fclasificaciones%2Fprovincias%2FPROVINCIAS%3E%0D%0A%7D&format=text%2Fhtml&timeout=0&signal_void=on">PROVINCIAS</a></td>
@@ -602,7 +603,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00510/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00510/false">INEbase</a><br></span>
     <td>Provincias</td>
     <td>
       <a href="javascript:void(0);" onclick="generateYasguiLink('provincias/PROVINCIAS', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \n?x rdf:type xkos:ClassificationLevel. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n }');">Lista de niveles de la clasificación.</a>
@@ -617,7 +618,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     <td><a href="http://www.lexvo.org/page/iso639-3/spa" target="_blank"> <span class="label label-primary">es</span></a> </td>
     <td>
         <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://github.com/oeg-upm/LinkedOpenDataINE/tree/main">Github Repository</a><br></span>
-        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00030/false">INEbase</a><br></span>    
+        <img src="vocab/img/repo.svg" alt="repository"/><span style="padding-left:20px"><a href="https://www.ine.es/Gescla/#/busqueda/C00030/false">INEbase</a><br></span>
     </td>
     <td>Clasificación Nacional de Actividades Económicas. CNAE 2025</td>
     <td>
@@ -625,7 +626,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
       <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?y ?z WHERE { \n?x ?y ?z.  \?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?z.\n}');">Lista de elementos en lenguaje natural.</a>
       <a href="javascript:void(0);" onclick="generateYasguiLink('cnae/CNAE2025', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?a ?b ?c WHERE { \n?x ?y ?z.\n?x rdf:type skos:Concept. \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/{{CLASI}}>.\n?x skos:prefLabel ?a.\n?x xkos:coreContentNote ?b.\n?x xkos:exclusionNote ?c.\n}');">Notas de un elemento de la clasificación.</a>
     </td>
-  </tr>  
+  </tr>
 
 </tbody></table>-
 <hr>
@@ -644,6 +645,6 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     	</div>
       </div>
       </footer>
-    </div> 
+    </div>
   </body>
 </html>

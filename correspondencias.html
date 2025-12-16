@@ -7,7 +7,7 @@
     <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
     <meta name="language" content="Spanish">
     <meta name="author" content="Diego Conde">
-    
+
     <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
     <script src="vocab/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
@@ -16,12 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-      $(document).ready(function() 
-        { 
-          $("#tablesorter-demo").tablesorter(); 
-          $("#tablesorter-demo").stickyTableHeaders(); 
-          $('[data-toggle="tooltip"]').tooltip(); 
-        }); 
+      $(document).ready(function()
+        {
+          $("#tablesorter-demo").tablesorter();
+          $("#tablesorter-demo").stickyTableHeaders();
+          $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
     <!-- Le styles -->
@@ -32,7 +32,7 @@
         padding-bottom: 40px;
       }
     </style>
-    
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="vocab/js/html5shiv.js"></script>
@@ -60,6 +60,7 @@
         <li><a href="cubos.html">Cubos de datos</a></li>
         <li><a href="queries.html">Data Stories</a></li>
         <li><a href="misc.html">Miscelanea</a></li>
+        <li><a href="visual.html">Visualización</a></li>
       </ul>
     </div>
   </div>
@@ -72,13 +73,13 @@
         <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística. Esta pestaña contiene las correspondencias entre las clasificaciones estadísticas.</p>
       </div>
       <hr>
-<div class="row"> 
+<div class="row">
 <div class="ui-widget">
-<!--<div class="col-md-3" > 
+<!--<div class="col-md-3" >
 <p class="text-right"><label for="tags">Filter by title or domain: </label></p>
 </div>
 
-<div class="col-md-8" > 
+<div class="col-md-8" >
 <input class="form-control" id="tags" >
 <button id="remButt" class="label label-default" onclick="showRows();" style="font-size: 75%; font-weight: bold; line-height: 1; display: none;"><span class="submit glyphicon glyphicon-remove"></span>  Remove filter</button>
 </div>
@@ -103,7 +104,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
   processQuery(queryInput);
   function processQuery(queryTemplate) {
     const query = queryTemplate.replace("{{CLASI1}}", clasif1);
-          query = queryTemplate.replace("{{CLASI2}}", clasif2);   
+          query = queryTemplate.replace("{{CLASI2}}", clasif2);
     const encodedQuery = encodeURIComponent(query);
     const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
     window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
@@ -138,7 +139,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     </td>
     <td>Correspondencias entre CNAE09 y NACEREV2</td>
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT  ?z WHERE { \n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n<http://stats.linkeddata.es/voc/clasificaciones/nace/NACEREV2/4/4743> xkos:ConceptAssociation ?z.}\nUNION\n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?z xkos:ConceptAssociation <http://stats.linkeddata.es/voc/clasificaciones/nace/NACEREV2/4/4743>.}\n}');">Obtención del elemento correspondiente a otro de las clasificaciones dadas.</a></td>
-  </tr> 
+  </tr>
 
   <tr id="tr2">
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT ?x ?z WHERE { \n?x skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE93>.\n?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?x xkos:ConceptAssociation ?z.\n}');">CNAE93-09</a></td>
@@ -150,7 +151,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     </td>
     <td>Correspondencias entre CNAE93 y CNAE09</td>
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nSELECT DISTINCT  ?z WHERE { \n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n<http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE93/6/45421> xkos:ConceptAssociation ?z.}\nUNION\n{?z skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE09>.\n?z xkos:ConceptAssociation <http://stats.linkeddata.es/voc/clasificaciones/cnae/CNAE93/6/45421>.}\n}');">Obtención del elemento correspondiente a otro de las clasificaciones dadas.</a></td>
-  </tr> 
+  </tr>
 
   <tr id="tr3">
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('', 'PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n PREFIX place: <http://purl.org/ontology/places#>\n SELECT DISTINCT ?x ?z WHERE { ?x place:in ?z. \n}');">Municipios por provincia, y provincia por comunidad autónoma e isla con sus códigos</a></td>
@@ -162,7 +163,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     </td>
     <td>Municipios por provincia, y provincia por comunidad autónoma e isla con sus códigos</td>
     <td><a href="javascript:void(0);" onclick="generateYasguiLink('','PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX place: <http://purl.org/ontology/places#>\nSELECT DISTINCT  ?z WHERE { \n<http://stats.linkeddata.es/voc/mun/{{MUN}}> place:in ?y.\n ?y skos:prefLabel ?z.}');">Obtención de la provincia correspondiente a un municipio dado el código.</a></td>
-  </tr>   
+  </tr>
 
 </tbody></table>-
 <hr>
@@ -181,6 +182,6 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     	</div>
       </div>
       </footer>
-    </div> 
+    </div>
   </body>
 </html>

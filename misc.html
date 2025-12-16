@@ -7,7 +7,7 @@
     <meta name="description" content="Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística.">
     <meta name="language" content="Spanish">
     <meta name="author" content="Diego Conde">
-    
+
     <link rel="stylesheet" href="vocab/themes/blue/style.css" type="text/css" media="print, projection, screen" />
     <script src="vocab/js/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="vocab/js/jquery.tablesorter.min.js"></script>
@@ -16,12 +16,12 @@
     <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
     <link rel="stylesheet" href="vocab/css/jquery-ui.css"/>
     <script type="text/javascript" id="js">
-      $(document).ready(function() 
-        { 
-          $("#tablesorter-demo").tablesorter(); 
-          $("#tablesorter-demo").stickyTableHeaders(); 
-          $('[data-toggle="tooltip"]').tooltip(); 
-        }); 
+      $(document).ready(function()
+        {
+          $("#tablesorter-demo").tablesorter();
+          $("#tablesorter-demo").stickyTableHeaders();
+          $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
     <!-- Le styles -->
@@ -32,7 +32,7 @@
         padding-bottom: 40px;
       }
     </style>
-    
+
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="vocab/js/html5shiv.js"></script>
@@ -60,6 +60,8 @@
         <li><a href="cubos.html">Cubos de datos</a></li>
         <li><a href="queries.html">Data Stories</a></li>
         <li class="active"><a href="#">Miscelanea</a></li>
+        <li><a href="visual.html">Visualización</a></li>
+        
       </ul>
     </div>
   </div>
@@ -72,13 +74,13 @@
         <p class="lead">Este catálogo contiene los conjuntos de datos generados en el contexto de la colaboración entre el Ontology Engineering Group de la Universidad Politécnica y el Instituto Nacional de Estadística. Esta pestaña contiene las clasificaciones estadísticas. </p>
       </div>
       <hr>
-<div class="row"> 
+<div class="row">
 <div class="ui-widget">
-<!--<div class="col-md-3" > 
+<!--<div class="col-md-3" >
 <p class="text-right"><label for="tags">Filter by title or domain: </label></p>
 </div>
 
-<div class="col-md-8" > 
+<div class="col-md-8" >
 <input class="form-control" id="tags" >
 <button id="remButt" class="label label-default" onclick="showRows();" style="font-size: 75%; font-weight: bold; line-height: 1; display: none;"><span class="submit glyphicon glyphicon-remove"></span>  Remove filter</button>
 </div>
@@ -103,7 +105,7 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
   processQuery(queryInput);
   function processQuery(queryTemplate) {
     const query = queryTemplate.replace("{{CLASI1}}", clasif1);
-          query = queryTemplate.replace("{{CLASI2}}", clasif2);   
+          query = queryTemplate.replace("{{CLASI2}}", clasif2);
     const encodedQuery = encodeURIComponent(query);
     const encodedEndpoint = encodeURIComponent(SPARQL_ENDPOINT);
     window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
@@ -145,6 +147,6 @@ function generateYasguiLinkCorres(clasif1,clasif2, queryInput) {
     	</div>
       </div>
       </footer>
-    </div> 
+    </div>
   </body>
 </html>
