@@ -121,7 +121,12 @@ SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
 } LIMIT 100
 `)' target="_blank">Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.</a>
     </div>
-    <div id="results-table-container"></div>
+    <div id="results-table-container">
+      <table id="results-table">
+        <thead id="table-head"></thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
