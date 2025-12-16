@@ -97,6 +97,24 @@ SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
     OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}
 } LIMIT 100`;
 	}
+	else if ("tasa-paro" == selectedCube) {
+		query = `
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>
+PREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+SELECT DISTINCT ?ccaa ?observation ?refPeriod ?age ?sex ?unemploymentRate WHERE {
+    BIND("${selectedCCAA}" AS ?ccaa)
+    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/65334>;
+        inelod:ccaa ?ccaa.
+    OPTIONAL{?observation sdmx:refPeriod ?refPeriod.}
+    OPTIONAL{?observation sdmx:age ?age.}
+    OPTIONAL{?observation sdmx:sex ?sex.}
+    OPTIONAL{?observation sdmx:unemploymentRate ?unemploymentRate.}
+} LIMIT 100`;
+	}
 
 
 	displayQueryInTable(query);

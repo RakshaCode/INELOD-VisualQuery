@@ -8,7 +8,7 @@
   {
     "kind": 1,
     "language": "markdown",
-    "value": "# CCAA",
+    "value": "## CCAA",
     "metadata": {}
   },
   {
@@ -38,13 +38,19 @@
   {
     "kind": 1,
     "language": "markdown",
+    "value": "## Cubo 290 - Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
     "value": "Lograr que para la ccaa Comunidad de Madrid provincia Madrid devuelva los datos del cubo 2940 “Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.”",
     "metadata": {}
   },
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\nPREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>\r\nPREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {\r\n    BIND(\"13 Madrid, Comunidad de\" AS ?ccaa)\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>;\r\n        inelod:ccaa ?ccaa.\r\n    OPTIONAL {?observation inelod:lodgingType ?lodging.}\r\n    OPTIONAL {?observation inelod:averageStay ?averageStay.}\r\n    OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}\r\n} LIMIT 100",
+    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\nPREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>\r\nPREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {\r\n    BIND(\"13 Madrid, Comunidad de\" AS ?ccaa)\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/2940>;\r\n        inelod:ccaa ?ccaa.\r\n    OPTIONAL {?observation inelod:lodgingType ?lodging.}\r\n    OPTIONAL {?observation inelod:averageStay ?averageStay.}\r\n    OPTIONAL {?observation sdmx:refPeriod ?refPeriod.}\r\n} LIMIT 10",
     "metadata": {}
   },
   {
@@ -93,6 +99,36 @@
     "kind": 2,
     "language": "sparql",
     "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\n\r\nSELECT DISTINCT ?ccaa\r\nWHERE {\r\n    ?observation a qb:Observation;\r\n        inelod:ccaa ?ccaa .\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "## Cubo 65334 - Tasas de paro por distintos grupos de edad, sexo y comunidad autónoma",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\nPREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>\r\nPREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?ccaa ?observation ?refPeriod ?age ?sex ?unemploymentRate WHERE {\r\n    BIND(\"13 Madrid, Comunidad de\" AS ?ccaa)\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/65334>;\r\n        inelod:ccaa ?ccaa.\r\n    OPTIONAL{?observation sdmx:refPeriod ?refPeriod.}\r\n    OPTIONAL{?observation sdmx:age ?age.}\r\n    OPTIONAL{?observation sdmx:sex ?sex.}\r\n    OPTIONAL{?observation sdmx:unemploymentRate ?unemploymentRate.}\r\n} LIMIT 10",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "### Experimentos cubo 65334",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
+    "value": "Acabo de descubrir que las propiedades de los cubos no tienen labels. ¿Hay alguna forma de obtenerlos?",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT DISTINCT ?p ?label WHERE {\r\n    ?observation qb:dataSet <http://stats.linkeddata.es/voc/cubes/65334>;\r\n        ?p ?z.\r\n    OPTIONAL {?observation rdf:label ?label.}\r\n}",
     "metadata": {}
   }
 ]
