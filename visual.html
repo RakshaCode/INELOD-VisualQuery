@@ -15,21 +15,9 @@
   <script type="text/javascript" src="vocab/js/jquery.stickytableheaders.js"></script>
   <script type="text/javascript" src="vocab/js/jquery-ui.js"></script>
   <script type="text/javascript" src="vocab/js/bootstrap.js"></script>
+  <script type="text/javascript" src="vocab/js/visual.js"></script> <!-- Added visual.js for visual query functionality -->
   <link rel="stylesheet" href="vocab/css/jquery-ui.css" />
-  <script type="text/javascript" id="js">
-    $(document).ready(function () {
-      $("#tablesorter-demo").tablesorter();
-      $("#tablesorter-demo").stickyTableHeaders();
-      $('[data-toggle="tooltip"]').tooltip();
-    });
-  </script>
-  <script>
-    function generateYasguiLink(query) {
-      const encodedQuery = encodeURIComponent(query);
-      const encodedEndpoint = encodeURIComponent("https://stats.linkeddata.es/sparql");
-      window.open(`https://yasgui.triply.cc/#query=${encodedQuery}&endpoint=${encodedEndpoint}`, '_blank');
-    }
-  </script>
+
   <!-- Le styles -->
   <link href="vocab/css/bootstrap.css" rel="stylesheet">
   <style type="text/css">
@@ -116,7 +104,7 @@
 
     <!-- Content -->
     <div class="content">
-      <a class="query-button" onclick='generateYasguiLink(`
+      <a class="query-button" onclick='executeSparqlQuery(`
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX clasificaciones: <http://stats.linkeddata.es/voc/clasificaciones/>
 PREFIX qb: <http://purl.org/linked-data/cube#>
@@ -133,6 +121,7 @@ SELECT DISTINCT ?ccaa ?observation ?lodging ?averageStay ?refPeriod WHERE {
 } LIMIT 100
 `)' target="_blank">Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.</a>
     </div>
+    <div id="results-table-container"></div>
 
     <!-- Footer -->
     <footer class="footer">
