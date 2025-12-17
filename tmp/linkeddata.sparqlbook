@@ -158,13 +158,19 @@
   {
     "kind": 2,
     "language": "sparql",
-    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT COUNT(DISTINCT ?dataSet) WHERE {\r\n    GRAPH <http://stats.linkeddata.es/voc/cubes/immigracion> {\r\n        ?observation qb:dataSet ?dataSet.\r\n    }\r\n}",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\r\n\r\nSELECT COUNT(DISTINCT ?dataSet) WHERE {\r\n    GRAPH <http://stats.linkeddata.es/voc/cubes/demografia> {\r\n        ?observation qb:dataSet ?dataSet.\r\n    }\r\n}",
     "metadata": {}
   },
   {
     "kind": 1,
     "language": "markdown",
-    "value": "Tras comprobar cada uno de los grafos (especificados en el fichero `lista_grafos.txt`) esta es la tabla con el número de cubos en cada grafo:\r\n\r\n\r\n| Grafo | Nº de cubos |\r\n| --- | --- |\r\n| http://stats.linkeddata.es/voc/clasificaciones/       |   0 |\r\n| http://stats.linkeddata.es/voc/clasificaciones        |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/turismo          |   5 |\r\n| http://stats.linkeddata.es/voc/cubes/mercado_laboral  |   4 |\r\n| http://stats.linkeddata.es/voc/cubes/poblacion        |   1 |\r\n| http://stats.linkeddata.es/voc/cubes/servicios        |   1 |\r\n| http://stats.linkeddata.es/voc/correspondencias       |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/metadata         |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/immigracion      |   NO FUNCIONA |\r\n\r\n",
+    "value": "Tras comprobar cada uno de los grafos (especificados en el fichero `lista_grafos.txt`) esta es la tabla con el número de cubos en cada grafo:\r\n\r\n\r\n| Grafo | Nº de cubos |\r\n| --- | --- |\r\n| http://stats.linkeddata.es/voc/clasificaciones/       |   0 |\r\n| http://stats.linkeddata.es/voc/clasificaciones        |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/turismo          |   5 |\r\n| http://stats.linkeddata.es/voc/cubes/mercado_laboral  |   4 |\r\n| http://stats.linkeddata.es/voc/cubes/poblacion        |   1 |\r\n| http://stats.linkeddata.es/voc/cubes/servicios        |   1 |\r\n| http://stats.linkeddata.es/voc/correspondencias       |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/metadata         |   0 |\r\n| http://stats.linkeddata.es/voc/cubes/demografia       |   4 |\r\n\r\n",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX  xkos: <http://rdf-vocabulary.ddialliance.org/xkos#>\r\nPREFIX skos: <http://www.w3.org/2004/02/skos/core#>\r\n\r\nSELECT DISTINCT ?p WHERE {\r\n    ?ccaa a skos:Concept.\r\n    ?ccaa skos:inScheme <http://stats.linkeddata.es/voc/clasificaciones/ccaa/CCAA>.\r\n    ?ccaa skos:prefLabel ?ccaaLabel ;\r\n    ?p ?o\r\n}",
     "metadata": {}
   }
 ]

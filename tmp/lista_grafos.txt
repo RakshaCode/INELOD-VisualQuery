@@ -6,6 +6,4 @@ http://stats.linkeddata.es/voc/cubes/poblacion
 http://stats.linkeddata.es/voc/cubes/servicios
 http://stats.linkeddata.es/voc/correspondencias
 http://stats.linkeddata.es/voc/cubes/metadata
-
-No funciona:
-http://stats.linkeddata.es/voc/cubes/immigracion
+http://stats.linkeddata.es/voc/cubes/demografia
