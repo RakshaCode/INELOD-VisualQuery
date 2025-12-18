@@ -44,6 +44,30 @@
   {
     "kind": 1,
     "language": "markdown",
+    "value": "Todos los cubos y sus *labels*",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?cube ?p WHERE {\r\n    ?observation qb:dataSet ?cube;\r\n        ?p ?o.\r\n    FILTER(STRSTARTS(STR(?cube), \"http://stats.linkeddata.es/voc/cubes/\"))\r\n    # FILTER(STRSTARTS(STR(?p), \"http://purl.org/linked-data/sdmx/2009/dimension#\") || (STRSTARTS(STR(?p), \"https://stats.linkeddata.es/voc/cubes/vocabulary#\")))\r\n    FILTER(?p = sdmx || ?p = inelod:ageGroup)\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\n\r\nSELECT DISTINCT ?cube ?p ?type WHERE {\r\n    ?cube a qb:DataSet ;\r\n          qb:structure ?dsd .\r\n\r\n    ?dsd qb:component ?component .\r\n\r\n    # 3. Get the actual property URI (?p) attached to that component\r\n    { ?component qb:dimension ?p . BIND(\"Dimension\" AS ?type) }\r\n    UNION\r\n    { ?component qb:measure ?p .   BIND(\"Measure\" AS ?type) }\r\n    UNION\r\n    { ?component qb:attribute ?p . BIND(\"Attribute\" AS ?type) }\r\n\r\n    # Optional: Filter by specific cube\r\n    # FILTER(?cube = <http://stats.linkeddata.es/voc/cubes/2940>)\r\n} ORDER BY ?cube",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX sdmx: <http://purl.org/linked-data/sdmx/2009/dimension#>\r\n\r\nSELECT DISTINCT ?cube ?p WHERE {\r\n    ?observation qb:dataSet ?cube;\r\n        ?p ?o.\r\n    FILTER(STRSTARTS(STR(?cube), \"http://stats.linkeddata.es/voc/cubes/\"))\r\n    # FILTER(STRSTARTS(STR(?p), \"http://purl.org/linked-data/sdmx/2009/dimension#\") || (STRSTARTS(STR(?p), \"https://stats.linkeddata.es/voc/cubes/vocabulary#\")))\r\n    FILTER(?p = sdmx:refArea || ?p = inelod:ageGroup)\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
     "value": "### Cubo 290 - Estancia media, por tipo de alojamiento por comunidad y ciudades autónomas.",
     "metadata": {}
   },
