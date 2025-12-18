@@ -38,6 +38,18 @@
   {
     "kind": 1,
     "language": "markdown",
+    "value": "Busca cubos que utilicen la propiedad *inelod:ccaa* en su estructura",
+    "metadata": {}
+  },
+  {
+    "kind": 2,
+    "language": "sparql",
+    "value": "PREFIX qb: <http://purl.org/linked-data/cube#>\r\nPREFIX inelod: <https://stats.linkeddata.es/voc/cubes/vocabulary#>\r\nPREFIX dcterms: <http://purl.org/dc/terms/>\r\n\r\nSELECT DISTINCT ?cube ?title\r\nWHERE {\r\n  # Buscamos la definición de estructura (DSD) del cubo\r\n  ?cube qb:structure ?dsd .\r\n\r\n  ?dsd qb:component ?comp .\r\n  ?comp qb:dimension inelod:ccaa .\r\n\r\n  OPTIONAL { ?cube dcterms:title ?title }\r\n}",
+    "metadata": {}
+  },
+  {
+    "kind": 1,
+    "language": "markdown",
     "value": "## Cubos",
     "metadata": {}
   },
